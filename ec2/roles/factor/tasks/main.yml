@@ -4,7 +4,7 @@
   tags: params
 - copy: src=~/.boto dest=/home/ubuntu/.boto
 - file: state=directory dest={{ faasdir_remote }} owner=ubuntu group=ubuntu
-  sudo: yes
+  become: yes
   tags: faas
 - copy: src={{ faasdir }}/factor dest={{ faasdir_remote }}
   tags: faas

@@ -1,29 +1,29 @@
 ---
 # Set up Enhanced Networking following guide at http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html#enhanced-networking-ubuntu
 - apt: update_cache=yes
-  sudo: yes
+  become: yes
 - apt: upgrade=yes
-  sudo: yes
+  become: yes
 - apt: name=dkms
-  sudo: yes
+  become: yes
 - unarchive: src=ixgbevf-2.16.1.tar.gz dest=/usr/src
-  sudo: yes
+  become: yes
 # Copy over patch from https://gist.github.com/defila-aws/44946d3a3c0874fe3d17
 - copy: src=kcompat.h dest=/usr/src/ixgbevf-2.16.1/src/
-  sudo: yes
+  become: yes
 - copy: src=dkms.conf dest=/usr/src/ixgbevf-2.16.1/
-  sudo: yes
+  become: yes
 - shell: dkms add -m ixgbevf -v 2.16.1
-  sudo: yes
+  become: yes
   ignore_errors: yes
 - shell: dkms build -m ixgbevf -v 2.16.1
-  sudo: yes
+  become: yes
   ignore_errors: yes
 - shell: dkms install -m ixgbevf -v 2.16.1
-  sudo: yes
+  become: yes
   ignore_errors: yes
 - shell: update-initramfs -c -k all
-  sudo: yes
+  become: yes
   ignore_errors: yes
 
 - local_action: shell aws ec2 stop-instances --instance-ids {{ hostvars[inventory_hostname].ec2_id }}

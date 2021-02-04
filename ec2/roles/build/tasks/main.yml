@@ -28,13 +28,13 @@
 # Perform these tasks only on a custom image, since they generate private data
 - name: generate munge key
   shell: no | /usr/sbin/create-munge-key
-  sudo: yes
+  become: yes
   tags: 
    - slurm
    - custom
 - name: copy over slurm configuration
   template: src=slurm_conf.j2 dest=/usr/local/etc/slurm.conf
-  sudo: yes
+  become: yes
   tags:
    - slurm
    - custom

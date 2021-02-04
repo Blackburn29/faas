@@ -1,60 +1,60 @@
 ---
 # Install packages that are needed for all AMIs
 - apt: update_cache=yes
-  sudo: yes
+  become: yes
 - apt: upgrade=full
-  sudo: yes
+  become: yes
 - apt: upgrade=dist
-  sudo: yes
+  become: yes
 - apt: name=build-essential
-  sudo: yes
+  become: yes
 - apt: name=g++
-  sudo: yes
+  become: yes
 - apt: name=python3-minimal
-  sudo: yes
+  become: yes
 - apt: name=cmake 
-  sudo: yes
+  become: yes
 - apt: name=python-setuptools 
-  sudo: yes
+  become: yes
 - apt: name=git 
-  sudo: yes
+  become: yes
 - apt: name=libtool 
-  sudo: yes
+  become: yes
 - apt: name=libgmp3-dev 
-  sudo: yes
+  become: yes
 - apt: name=libibnetdisc-dev 
-  sudo: yes
+  become: yes
 - command: apt-get -y autoremove 
-  sudo: yes
+  become: yes
 - easy_install: name=supervisor
-  sudo: yes
+  become: yes
 - easy_install: name=superlance
-  sudo: yes
+  become: yes
 
 # Convenience packages
 - apt: name=htop 
-  sudo: yes
+  become: yes
 - apt: name=iperf
-  sudo: yes
+  become: yes
 
 # Packages for automated emailing and shutdown using Supervisor and Ansible
 - apt: name=sendmail
-  sudo: yes
+  become: yes
 - apt: name=sendemail
-  sudo: yes
+  become: yes
 - apt: name=python3-pip
-  sudo: yes
+  become: yes
 - pip: executable=pip3 name=boto
-  sudo: yes
+  become: yes
 
 # Install ansible
 - apt: name=python-boto
-  sudo: yes
+  become: yes
 - apt: name=python-apt
-  sudo: yes
+  become: yes
 - apt: name=software-properties-common
-  sudo: yes
+  become: yes
 - apt_repository: repo="ppa:ansible/ansible"
-  sudo: yes
+  become: yes
 - apt: name=ansible update_cache=yes
-  sudo: yes
+  become: yes

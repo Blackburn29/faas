@@ -6,8 +6,8 @@
     accept_hostkey: true
     repo: "git://scm.gforge.inria.fr/cado-nfs/cado-nfs.git" 
     version: ac1cd8f7b8bfa5d439619ba8df0ca307e426b125
-  sudo: yes
+  become: yes
 - shell: chdir={{ sourcedir }}/cado-nfs printf 'build_tree={{ sourcedir }}/cado-nfs/build\nMPI=0' > local.sh
-  sudo: yes
+  become: yes
 - shell: chdir={{ sourcedir }}/cado-nfs yes | make install
-  sudo: yes
+  become: yes
